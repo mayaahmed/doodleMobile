@@ -49,15 +49,25 @@ incRad.addEventListener('click',function(){
       setRadius(radius+interval); });
 setRadius(defaultRad);
 
+/* function getXY(canvas, event) {
+    var rect = canvas.getBoundingClientRect();  // absolute position of canvas
+    return {
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top
+    }
+}
+*/
+
 var putPoint=function(e){
+var rect = canvas.getBoundingClientRect();  // absolute position of canvas
   if(dragging){
-    context.lineTo(e.clientX, e.clientY);
+    context.lineTo(e.clientX- rect.left, e.clientY- rect.top);
     context.stroke();
   context.beginPath();
-  context.arc(e.clientX, e.clientY, radius, 0, Math.PI*2);
+  context.arc(e.clientX- rect.left, e.clientY- rect.top, radius, 0, Math.PI*2);
   context.fill();
   context.beginPath();
-  context.moveTo(e.clientX, e.clientY);
+  context.moveTo(e.clientX- rect.left, e.clientY- rect.top);
   }
 }
 
